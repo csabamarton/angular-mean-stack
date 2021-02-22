@@ -38,23 +38,14 @@ app.post('/api/posts', (req, res, next) => {
 });
 
 app.get('/api/posts', (req, res, next) => {
-  const posts = [
-    {
-      id: "123431ada",
-      title: "This is the first post title",
-      content: "This is the content for the first post"
-    },
-    {
-      id: "4654631ada",
-      title: "This is the second post title",
-      content: "This is the content for the second post"
-    }
-  ];
-
-  res.status(200).json({
-    message: "Posts fetched successfully!",
-    posts: posts
-  })
+  Post.find()
+    .then(documents => {
+      console.log(documents);
+      res.status(200).json({
+        message: "Posts fetched successfully!",
+        posts: documents
+      })
+    });
 });
 
 
