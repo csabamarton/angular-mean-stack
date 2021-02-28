@@ -13,6 +13,7 @@ import {PostCreateComponent} from './posts/post-create/post-create.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {AppRoutingModule} from './app-routing.module';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     FormsModule,
     HttpClientModule
   ],
