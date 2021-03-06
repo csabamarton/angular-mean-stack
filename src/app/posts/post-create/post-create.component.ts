@@ -11,25 +11,27 @@ import {Post} from '../post.model';
 })
 export class PostCreateComponent implements OnInit{
   private mode = 'create';
-  private postId: string | null | undefined;
-  form = new FormGroup({}, {});
+  private postId!: string;
+  form!: FormGroup;
   post!: Post;
   isLoading = false;
 
-  constructor(public postsService: PostsService, public route: ActivatedRoute) {}
+  constructor(public postsService: PostsService, public route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
-      title: new FormControl(null,
+      title: new FormControl('',
         {validators: [Validators.required, Validators.minLength(3)]}),
-      content: new FormControl(null,
+      content: new FormControl('',
         {validators: [Validators.required]})
 
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postid')) {
         this.mode = 'edit';
-        this.postId = paramMap.get('postid');
+        this.postId = paramMap.get('postid')!;
 
         this.isLoading = true;
         this.postsService.getPost(this.postId).subscribe(postData => {
@@ -42,7 +44,7 @@ export class PostCreateComponent implements OnInit{
         });
       } else {
         this.mode = 'create';
-        this.postId = null;
+        this.postId = null!;
       }
     });
   }
